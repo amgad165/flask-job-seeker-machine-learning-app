@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block statics %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/cards.css')}}">
+
+ {% endblock %}
+
+{% block content %}
+
+ <div class="container ">
+  <div class="d-flex justify-content-md-center">
+<div class="row" >
+<h1 id="welcome-text">Welcome to job seekers Website , your gate to a new Job !</h1>
+</div>
+
+  </div>  
+  <div class="row">
+    <div class="col-2" ></div>
+    <div class="col-5">
+        <a href="{{ url_for('job_seeker') }}">
+            <figure id="fig1">
+                <figcaption>
+                    <h4> <span>Job Seeker</span></h4>
+                    <h6>Looking for job ? , this is the right place , just click !</h6>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+    <div class="col-5">
+        <a href="{{ url_for('employer') }}">
+            <figure id="fig2">
+                <figcaption>
+                    <h4> <span>Employer</span></h4>
+                    <h6>Create job advertisments , hire People ! , let's Go ...</h6>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+    </div>
+
+ </div> 
+ 
+ {% endblock %}

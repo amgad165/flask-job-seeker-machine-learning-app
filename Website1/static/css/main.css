@@ -1,0 +1,22 @@
+body{
+    background-image: url('/static/images/img2.jpg');
+    background-size: cover;
+}
+#welcome-text{
+    color: whitesmoke;
+    margin-top: 200px;
+    }
+.form-container{
+    background-color: whitesmoke;
+    margin-top: 100px;
+    opacity:95% ; 
+
+}
+.submit-button{
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+

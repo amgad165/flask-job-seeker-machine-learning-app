@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block statics %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/job_seeker_cards.css')}}">
+ {% endblock %}
+
+
+{% block content %}
+
+  
+ <div class="container">
+    <div class="d-flex justify-content-md-center">
+        <div class="row" >
+        <h1 id="welcome-text">Please select job Category</h1>
+        </div>
+        
+          </div>  
+          <form method="POST">
+<div style="margin-top: 20px ;" class="row">
+    <div class="col-2">       </div>
+
+    <div class="col-2"><h4 style="color: white;" for="exampleInputEmail1">Job Category :</h4> </div>
+
+    <div  class="col-4">
+
+            <div class="form-group" id="category-select">
+          
+                <select name="custom-category" class="form-select" >
+                  <option value="Accounting_Finance">Accounting Finance</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Healthcare_Nursing">Healthcare Nursing</option>
+                  <option value="Sales">Sales</option>
+    
+                </select>          
+              </div>
+            </div>
+              <div  class="col-2">
+              <button type="submit" class="btn btn-secondary" >Submit</button>
+            </div>
+            </div>
+          </form>
+
+          <div class="row" >
+          {% for job in all_jobs %}
+          
+        
+            <figure class="snip1518">
+                <div class="image"><img src="https://www.wpgforfree.ca/wp-content/uploads/2022/10/hiring-now.png" alt="sample101" /></div>
+                <figcaption>
+                    <div class="row">
+                  <h5>Title :{{job.job_title}}</h5>
+                </div>
+                    <h5>Salary : {{job.salary}}</h5>
+                    <h6>Category : {{job.category}}</h6>
+    
+
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#myModal" class="btn btn-primary" data-bs-toggle="modal">Details</a>
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Job Title : {{job.job_title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Salary : {{job.salary}}</h5>
+                <h5>Category : {{job.category}}</h5>
+                <h5>Description : {{job.job_description}}</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+                  <footer>
+                    <div class="date">{{job.date.strftime('%Y-%m-%d')}}</div>
+  
+                  </footer>
+                </figcaption>
+                <a href="#"></a>
+              </figure>
+
+  {% endfor %}
+       
+
+          </div>
+ </div>
+  
+    
+
+
+
+ {% endblock %}

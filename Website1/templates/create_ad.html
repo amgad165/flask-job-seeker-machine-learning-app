@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block statics %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+ {% endblock %}
+
+{% block content %}
+
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+    <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+    <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+      <img
+           class="rounded-pill img-fluid"
+           width="65"
+           src="https://cdn4.vectorstock.com/i/thumb-large/28/63/profile-placeholder-image-gray-silhouette-vector-21542863.jpg
+           alt="">
+      <div class="ms-2">
+        <h5 class="fs-6 mb-0">
+          <a class="text-decoration-none" href="#">Employer</a>
+        </h5>
+      </div>
+    </div>
+  
+
+  
+    <ul class="categories list-unstyled">
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('home') }}"> Homepage</a>
+      </li>
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('employer') }}"> Dashboard</a>
+      </li>
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('create_ad') }}"> Create Advertisment</a>
+      </li>
+
+
+
+    
+
+     
+  
+
+    </ul>
+  </aside>
+  
+  <section id="wrapper">
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid mx-2">
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="uil-bars text-white"></i>
+          </button>
+          <a class="navbar-brand" href="#"><span class="main-color">Create Advertisment</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="toggle-navbar">
+ 
+        </div>
+      </div>
+    </nav>
+  
+
+  <div  class="container form-container" >
+    <div class="d-flex justify-content-md-center">
+      <div class="row" >
+      <h1 >Add a Job</h1>
+      </div>
+      
+        </div>  
+    <form id="post_form">
+        <div class="form-group ">
+          <label for="exampleInputEmail1">Job Title</label>
+          <input required name="job_title" type="input" class="form-control"  placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Job description</label>
+            <textarea required name="job_desc" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+        </div>
+        <div class="form-group ">
+          <label for="exampleInputEmail1">Salary</label>
+          <input required name="salary" type="input" class="form-control"  placeholder="salary">
+        </div>
+        <div id="category">
+          <div class="row" >
+            <div class="12">         
+                   <input id="suggested_true" type="radio"  name="suggested_choice" value="true" hidden>
+                <input  id="suggested_false" type="radio"  name="suggested_choice" value="false" hidden>
+              </div>
+
+            <div  style="margin-bottom: 15px;" class="col-4" >
+<h4>your suggested job category is : </h4>
+</div>
+<div class="col-3" >
+  <h4 id="sugg-category"></h4>
+  </div>
+  <div class="col-5" >
+    </div>
+
+  <div style="margin-bottom: 15px;" class="col-5">
+
+  <h4>Do you agree with the Suggested category ? </h4>
+    </div>
+
+    <div class="col-3">
+
+      <button id="yes_button" type="submit" class="btn btn-primary">Yes</button>
+    </div>
+
+    <div class="col-4">
+
+    </div>
+  <div class="col-2" >
+    <h4>or select manually : </h4>
+  </div>
+  <div class="col-4" >
+        <div class="form-group" id="category-select">
+            <label for="exampleInputEmail1">Job category</label>
+            <select name="custom-category" class="form-select" >
+              <option selected>Open this select menu</option>
+              <option value="Accounting_Finance">Accounting Finance</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Healthcare_Nursing">Healthcare Nursing</option>
+              <option value="Sales">Sales</option>
+
+            </select>          
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;" class="col-3">
+
+          <button id="no_button" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
+        </div>
+        </div>
+
+          <div id="usual_submit" class="form-group submit-button">
+        <button  type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+
+
+
+
+      </form>
+  
+
+  
+    
+    </div>
+  
+
+  </section>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+$(document).ready(function() {
+
+// hide category section and make it appears when post
+document.getElementById("category").style.display = "none";
+
+
+$(document).on('submit','#post_form',function (e) {
+  $('#yes_button, #no_button').click(function() {
+    let clickedButton = $(this).attr('id');
+    if (clickedButton == "yes_button") {
+      $("#suggested_true").prop("checked", true);
+      console.log(clickedButton);
+    }
+    else if(clickedButton =="no_button" ){
+      $("#suggested_false").prop("checked", true);
+
+      console.log(clickedButton);
+    }
+   
+});
+
+// hide usual submit button
+document.getElementById("usual_submit").style.display = "none";
+
+    e.preventDefault();
+$.ajax({
+        type:'POST',
+        data: $('form').serialize(),
+        dataType: "json",
+        url: "{{url_for('get_form_data')}}",
+      
+        success: (data) => {
+
+
+
+// when post success make table appear
+
+document.getElementById("category").style.display = "block";
+
+$('#sugg-category').text(data.category);
+
+if (data.message == "success") {
+  alert('Job added Successfully');
+}
+
+
+  },
+
+        error: function() {
+          alert('error happend');
+
+                }
+    });
+});
+});
+</script>
+
+
+ {% endblock %}

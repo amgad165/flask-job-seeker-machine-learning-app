@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block statics %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+ {% endblock %}
+
+{% block content %}
+
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+    <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+    <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+      <img
+           class="rounded-pill img-fluid"
+           width="65"
+           src="https://cdn4.vectorstock.com/i/thumb-large/28/63/profile-placeholder-image-gray-silhouette-vector-21542863.jpg
+           alt="">
+      <div class="ms-2">
+        <h5 class="fs-6 mb-0">
+          <a class="text-decoration-none" href="#">Employer</a>
+        </h5>
+      </div>
+    </div>
+  
+
+  
+    <ul class="categories list-unstyled">
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('home') }}"> Homepage</a>
+      </li>
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('employer') }}"> Dashboard</a>
+      </li>
+      <li class="">
+        <i class="uil-folder"></i><a href="{{ url_for('create_ad') }}"> Create Advertisment</a>
+      </li>
+
+
+
+    
+
+     
+  
+
+    </ul>
+  </aside>
+  
+  <section id="wrapper">
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid mx-2">
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="uil-bars text-white"></i>
+          </button>
+          <a class="navbar-brand" href="#"><span class="main-color"> dashboard</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="toggle-navbar">
+ 
+        </div>
+      </div>
+    </nav>
+  
+    <div class="p-4">
+      <div class="welcome">
+        <div class="content rounded-3 p-3">
+          <h1 class="fs-3">Welcome to Employer Dashboard, Start Creating Jobs advertisments Now !</h1>
+        </div>
+      </div>
+  
+
+  
+ 
+  
+    
+  
+  
+   
+    </div>
+  </section>
+
+
+
+ {% endblock %}

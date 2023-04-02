@@ -1,0 +1,4 @@
+we used the dataset from milestone 1 for our assigment and with Logistic regression classifier which got highest accuracy around 89 % using
+tf-idf word embedding then we saved our word embeddding vectorizer to use it in the site with input description and saved our model to predict the category .
+
+we built the website using flask framework with is a python library
